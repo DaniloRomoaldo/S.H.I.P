@@ -5,6 +5,10 @@ import * as columnsController from "./domain/postgres/columns/contoller.js"
 import * as viewsController from "./domain/postgres/views/controller.js"
 import * as viewsColumnsController from "./domain/postgres/viewColumns/controller.js"
 import * as rawQueryController from "./domain/postgres/raw/controller.js"
+import * as functionController from "./domain/postgres/functions/controller.js"
+import * as functionCodeController from "./domain/postgres/functionCode/controller.js"
+import * as procedureController from './domain/postgres/procedure/controller.js'
+import * as triggersController from './domain/postgres/trigger/controller.js'
 
 const app = express();
 const port = 3000;
@@ -29,6 +33,23 @@ app.get("/viewColumns", viewsColumnsController.getViewColumns);
 // rota para enviar a raw query a ser rodada no banco
 app.post("/rawQuery", rawQueryController.rawQuery);
 
+// rota para coletar as funções de um schema
+app.get("/functions", functionController.getFunctions);
+
+// rota para coletar o código fonte de uma função específica
+app.get("/functionCode", functionCodeController.getFunctionCode);
+
+// rota para coletar as procedures de um schema
+app.get("/procedures", procedureController.getProcedures);
+
+// rota para coletar o código fonte de uma procedure específica
+app.get("/procedureCode", procedureController.getProcedureCode);
+
+// rota para coletar as triggers de um shcema
+app.get("/triggers", triggersController.getTriggers);
+
+// rota para coletar o código fonte de uma trigger
+app.get("/triggerCode", triggersController.getTriggerCode);
 
 
 app.listen(port, () => console.log("Api em Execução"))
