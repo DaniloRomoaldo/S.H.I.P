@@ -9,6 +9,7 @@ import * as functionController from "./domain/postgres/functions/controller.js"
 import * as functionCodeController from "./domain/postgres/functionCode/controller.js"
 import * as procedureController from './domain/postgres/procedure/controller.js'
 import * as triggersController from './domain/postgres/trigger/controller.js'
+import * as enumsController from './domain/postgres/enums/controller.js'
 
 const app = express();
 const port = 3000;
@@ -50,6 +51,12 @@ app.get("/triggers", triggersController.getTriggers);
 
 // rota para coletar o código fonte de uma trigger
 app.get("/triggerCode", triggersController.getTriggerCode);
+
+// rota para coletar os enums de um schema
+app.get("/enums", enumsController.getEnums);
+
+// rota para coletar os valores de um enum
+app.get("/enumValues", enumsController.getEnumValues);
 
 
 app.listen(port, () => console.log("Api em Execução"))
