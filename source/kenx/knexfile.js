@@ -8,6 +8,11 @@ const {
   db_database,
   db_user,
   db_password,
+  MAIN_db_host,
+  MAIN_db_port,
+  MAIN_db_database,
+  MAIN_db_user,
+  MAIN_db_password,
 } = process.env;
 
 
@@ -24,7 +29,21 @@ const config = {
   }
 }
 
-console.log(config)
+const config_Main = {
+  producer: {
+    client: 'pg',
+    connection: {
+      host: MAIN_db_host,
+      port: parseInt(MAIN_db_port),
+      database: MAIN_db_database,
+      user: MAIN_db_user,
+      password: MAIN_db_password
+    }
+  }
+}
+
+//console.log(config)
 
 export const database = Knex(config['development']);
-export default config;
+export const databaseSHIP = Knex(config_Main['producer']);
+export default {config, config_Main};

@@ -1,4 +1,10 @@
 import express from 'express';
+//------------------- improts do S.H.I.P  -----------------------------------
+import * as usersController from './domain/system/users/controller.js'
+import * as permissionController from './domain/system/permission/controller.js'
+import * as userPermissionController from './domain/system/user_permission/controller.js'
+
+//------------------- imports do postgres -----------------------------------
 import * as schemasController from "./domain/postgres/schemas/controller.js"
 import * as tablesContoller from "./domain/postgres/tables/controller.js"
 import * as columnsController from "./domain/postgres/columns/contoller.js"
@@ -15,6 +21,36 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+//--------------------------------- Rotas de uso para o banco de dados S.H.I.P -----------------------------------------
+
+app.get("/users", usersController.findAll);
+app.get("/user/:id", usersController.findOne);
+app.get("/userEmail", usersController.findByEmail);
+app.post("/user", usersController.createUser);
+//app.put("/user", usersController.updateUser);
+app.patch("/user", usersController.updateUser);
+app.delete("/user", usersController.deletarUsuario);
+
+
+app.get("/permissions", permissionController.findAll);
+app.get("/permission/:id", permissionController.findById);
+app.get("/permission", permissionController.findByName);
+app.post("/permission", permissionController.createPermission);
+//app.put("permission", permissionController.updatePermission);
+app.patch("/permission", permissionController.updatePermission);
+app.delete("/permission", permissionController.deletePermission);
+
+
+app.get("/permissionsByUser", userPermissionController.findPermissionsByUser);
+app.get("/usersByPermission", userPermissionController.findUsersByPermission);
+app.post("/createUserPermission", userPermissionController.createPermissionByUser);
+
+
+
+
+
+//--------------------------------- Rotas de uso do postgres ----------------------------------------------------------------
 
 //rota para coletar todos os schemas
 app.get("/schemas", schemasController.getSchemas);
