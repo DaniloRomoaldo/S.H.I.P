@@ -4,7 +4,7 @@ export const getProcedures = async (req, res) => {
 
     try {
         
-        const procedures = await procedureService.getProcedures(req.body);
+        const procedures = await procedureService.getProcedures(req.query);
         res.status(200).json(procedures);
 
     } catch (error) {
@@ -17,7 +17,7 @@ export const getProcedureCode = async (req, res) => {
 
     try {
         
-        const producerCode = await procedureService.getProducerCode(req.body);
+        const producerCode = await procedureService.getProducerCode(req.query);
         res.status(200).json(producerCode);
 
     } catch (error) {

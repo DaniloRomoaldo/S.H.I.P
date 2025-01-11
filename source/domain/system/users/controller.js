@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../util/ErrorHandler.js';
 import * as serviceUsers from './service.js';
 
 // GET todos
@@ -7,7 +8,7 @@ export const findAll = async (req, res) => {
         const users = await serviceUsers.findAll()
         res.status(200).json(users)
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
         
     }
 }
@@ -26,7 +27,7 @@ export const findOne = async (req, res) => {
 // GET usuario por email
 export const findByEmail = async (req, res) => {
     try {
-        const user = await serviceUsers.findByEmail(req.body);
+        const user = await serviceUsers.findByEmail(req.query);
         res.status(200).json(user)
     } catch (error) {
         res.status(404).json({error:error.message})

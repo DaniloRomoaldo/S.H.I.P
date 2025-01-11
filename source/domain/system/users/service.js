@@ -20,8 +20,8 @@ export const findOne = async(id) => {
 }
 
 // GET visualizar por email
-export const findByEmail = async(body) => {
-    const {email} = body;
+export const findByEmail = async(query) => {
+    const {email} = query;
     const user = await repositoryUsers.findByEmail(email);
 
     if (!user){

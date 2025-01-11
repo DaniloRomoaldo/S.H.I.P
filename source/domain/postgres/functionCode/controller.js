@@ -4,7 +4,7 @@ export const getFunctionCode = async (req,res) => {
 
     try {
         
-        const functionCode = await functionCodeService.getFunctionCode(req.body)
+        const functionCode = await functionCodeService.getFunctionCode(req.query)
         res.status(200).json(functionCode);
 
     } catch (error) {

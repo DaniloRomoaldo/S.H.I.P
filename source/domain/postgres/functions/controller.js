@@ -4,7 +4,7 @@ export const getFunctions = async (req,res) => {
 
     try {
 
-        const functionsName = await functionService.getFunctions(req.body);
+        const functionsName = await functionService.getFunctions(req.query);
         res.status(200).json(functionsName)
 
     } catch (error) {

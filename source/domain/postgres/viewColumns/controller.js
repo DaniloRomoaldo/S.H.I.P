@@ -4,10 +4,10 @@ export const getViewColumns = async (req,res) => {
 
     try {
         
-        const viewsColumns = await viewColumnsService.getViewColumns(req.body);
+        const viewsColumns = await viewColumnsService.getViewColumns(req.query);
         res.status(200).json(viewsColumns);
 
     } catch (error) {
-        res.status(400).json({"message":"Erro ao processar a requisição"})
+        res.status(400).json({error:error.message})
     }
 }

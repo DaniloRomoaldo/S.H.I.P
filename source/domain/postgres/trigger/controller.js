@@ -3,7 +3,7 @@ import * as serviceTrigger from './service.js'
 export const getTriggers = async (req, res) => {
     try {
         
-        const triggers = await serviceTrigger.getTriggers(req.body)
+        const triggers = await serviceTrigger.getTriggers(req.query)
         res.status(200).json(triggers)
 
     } catch (error) {
@@ -15,7 +15,7 @@ export const getTriggers = async (req, res) => {
 export const getTriggerCode = async (req, res) => {
     try {
         
-        const triggerCode = await serviceTrigger.getTriggerCode(req.body)
+        const triggerCode = await serviceTrigger.getTriggerCode(req.query)
         res.status(200).json(triggerCode)
 
     } catch (error) {

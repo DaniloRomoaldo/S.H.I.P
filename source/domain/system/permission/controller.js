@@ -24,7 +24,7 @@ export const findById = async (req, res) => {
 // GET por nome
 export const findByName = async (req, res) =>{
     try {
-        const permission = await servicePermission.findByName(req.body);
+        const permission = await servicePermission.findByName(req.query);
         res.status(200).json(permission)
     } catch (error) {
         res.status(404).json({error:error.message})

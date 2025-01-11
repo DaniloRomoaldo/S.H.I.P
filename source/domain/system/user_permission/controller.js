@@ -3,7 +3,7 @@ import * as serviceUserPermission from './service.js'
 // GET permissões do usuario
 export const findPermissionsByUser = async (req, res) => {
     try {
-        const permissions = await serviceUserPermission.findByUser(req.body)
+        const permissions = await serviceUserPermission.findByUser(req.query)
         res.status(200).json(permissions)
     } catch (error) {
         res.status(404).json({error:error.message})
@@ -13,14 +13,14 @@ export const findPermissionsByUser = async (req, res) => {
 // GET todos os usuarios por permissão
 export const findUsersByPermission = async (req, res) => {
     try {
-        const users = await serviceUserPermission.findByPermissionName(req.body);
+        const users = await serviceUserPermission.findByPermissionName(req.query);
         res.status(200).json(users)
     } catch (error) {
         res.status(404).json({error:error.message})
     }
 }
 
-// GET criar permissão para usuario
+// POST criar permissão para usuario
 export const createPermissionByUser = async (req, res) => {
     try {
         await serviceUserPermission.create(req.body)

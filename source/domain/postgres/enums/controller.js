@@ -4,7 +4,7 @@ export const getEnums = async (req, res) => {
 
     try {
         
-        const enums = await enumsService.getEnums(req.body);
+        const enums = await enumsService.getEnums(req.query);
         res.status(200).json(enums)
 
     } catch (error) {
@@ -16,7 +16,7 @@ export const getEnumValues = async (req, res) => {
 
     try {
         
-        const enumValues = await enumsService.getEnumValues(req.body)
+        const enumValues = await enumsService.getEnumValues(req.query)
         res.status(200).json(enumValues);
 
     } catch (error) {

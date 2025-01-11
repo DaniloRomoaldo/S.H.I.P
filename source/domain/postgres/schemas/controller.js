@@ -7,7 +7,7 @@ export const getSchemas = async (req, res) => {
         res.status(200).json(schemas);
 
     } catch (error) {
-        console.log(error);
-        res.status(400).json({"message": "Erro no processamento da requisição"})
+       // console.log(error);
+        res.status(400).json({error:error.message})
     }
 }

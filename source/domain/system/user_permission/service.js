@@ -1,18 +1,19 @@
 import * as repositoryUserPermission from './repository.js';
 import * as serviceUser from '../users/service.js'
 import * as servicePermission from '../permission/service.js'
+import { query } from 'express';
 // GET todos
 export const findAll = async () => {
     return repositoryUserPermission.findAll();
 }
 
 // GET permissões por User
-export const findByUser = async (body) => {
-    const {email} = body
+export const findByUser = async (query) => {
+    const {email} = query
 
-    const user = await serviceUser.findByEmail(body={email:email})
+    const user = await serviceUser.findByEmail(query={email:email})
 
-    console.log(user[0].id) 
+    //console.log(user[0].id) 
 
     if(!user){
         throw new Error("Usuario não encontrado")
@@ -23,10 +24,10 @@ export const findByUser = async (body) => {
 }
 
 // GET usuarios por permissão
-export const findByPermissionName = async (body) => {
-    const {permission_name} = body;
+export const findByPermissionName = async (query) => {
+    const {permission_name} = query;
 
-    const permission = await servicePermission.findByName(body={name:permission_name});
+    const permission = await servicePermission.findByName(query={name:permission_name});
 
     if (!permission) {
         throw new Error("Permissão não existe")
@@ -73,13 +74,13 @@ export const create = async (body) => {
 export const deletePermissao = async (body) => {
     const {email, permission_name} = body;
 
-    const user = await serviceUser.findByEmail(body={email:email})
+    const user = await serviceUser.findByEmail(query={email:email})
 
     if (!user) {
         throw new Error("usuario inexistente")
     }
 
-    const permission = await servicePermission.findByName(body={name:permission_name})
+    const permission = await servicePermission.findByName(query={name:permission_name})
 
     if (!permission) {
         throw new Error("permissão inexistente")

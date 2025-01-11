@@ -18,8 +18,8 @@ export const findById = async (id) => {
 }
 
 // GET por nome
-export const findByName = async (body) => {
-    const {name} = body;
+export const findByName = async (query) => {
+    const {name} = query;
 
     const permission = await repositoryPermissions.findByName(name);
 
