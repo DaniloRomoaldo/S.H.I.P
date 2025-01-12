@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../../system/util/ErrorHandler.js';
 import * as queryService from './service.js'
 
 export const rawQuery = async (req,res) => {
@@ -7,6 +8,7 @@ export const rawQuery = async (req,res) => {
         res.status(200).json({sucess:true, data:queryResult});
 
     } catch (error) {
-        res.status(400).json({sucess:false, error:error.message})
+        res.status(400).json({sucess:false, error: ErrorHandler.showError(error)})
     }
 }
+

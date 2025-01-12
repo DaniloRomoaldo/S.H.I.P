@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../util/ErrorHandler.js';
 import * as serviceAuth from './service.js';
 
 export const gerar_token = async (req, res) => {
@@ -12,6 +13,6 @@ export const gerar_token = async (req, res) => {
         res.status(200).json({"token":token});
 
     } catch (error) {
-        res.status(500).json({error:error.message})
+        res.status(500).json({error: ErrorHandler.showError(error)})
     }
 }

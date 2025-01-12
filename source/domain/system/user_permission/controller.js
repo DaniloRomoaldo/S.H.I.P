@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../util/ErrorHandler.js'
 import * as serviceUserPermission from './service.js'
 
 // GET permissões do usuario
@@ -6,7 +7,7 @@ export const findPermissionsByUser = async (req, res) => {
         const permissions = await serviceUserPermission.findByUser(req.query)
         res.status(200).json(permissions)
     } catch (error) {
-        res.status(404).json({error:error.message})
+        res.status(404).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -16,7 +17,7 @@ export const findUsersByPermission = async (req, res) => {
         const users = await serviceUserPermission.findByPermissionName(req.query);
         res.status(200).json(users)
     } catch (error) {
-        res.status(404).json({error:error.message})
+        res.status(404).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -26,6 +27,6 @@ export const createPermissionByUser = async (req, res) => {
         await serviceUserPermission.create(req.body)
         res.status(200).json({message:"Permissão concedida"})
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
     }
 }

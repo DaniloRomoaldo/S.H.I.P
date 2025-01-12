@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../../system/util/ErrorHandler.js';
 import * as procedureService from './service.js'
 
 export const getProcedures = async (req, res) => {
@@ -9,7 +10,7 @@ export const getProcedures = async (req, res) => {
 
     } catch (error) {
 
-        res.status(400).json({"message":"Erro ao processar requisição", error: error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -22,7 +23,8 @@ export const getProcedureCode = async (req, res) => {
 
     } catch (error) {
      
-        res.status(400).json({"message":"Erro no processamento da requisição", error:error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
     }
 
 }
+

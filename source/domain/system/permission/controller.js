@@ -1,3 +1,4 @@
+import { ErrorHandler } from '../util/ErrorHandler.js'
 import * as servicePermission from './service.js'
 
 // GET todos
@@ -6,7 +7,7 @@ export const findAll = async (req, res) => {
         const permissions = await servicePermission.findAll()
         res.status(200).json(permissions)
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -17,7 +18,7 @@ export const findById = async (req, res) => {
         const permission = await servicePermission.findById(req.params.id);
         res.status(200).json(permission);
     } catch (error) {
-        res.status(404).json({error:error.message})
+        res.status(404).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -27,7 +28,7 @@ export const findByName = async (req, res) =>{
         const permission = await servicePermission.findByName(req.query);
         res.status(200).json(permission)
     } catch (error) {
-        res.status(404).json({error:error.message})
+        res.status(404).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -37,7 +38,7 @@ export const createPermission = async (req, res) => {
         await servicePermission.create(req.body);
         res.status(200).json({message:"Permissão criada"})
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).json({error: ErrorHandler.showError(error)})
     }
 }
 
@@ -47,7 +48,7 @@ export const updatePermission = async (req, res) => {
         await servicePermission.update(req.body);
         res.status(200).json({message:"Permissão atualizada"})
     } catch (error) {
-        res.status(404).json({error:error.message});
+        res.status(404).json({error: ErrorHandler.showError(error)});
     }
 }
 
@@ -58,6 +59,6 @@ export const deletePermission = async (req, res) => {
         await servicePermission.deletePermission(req.body)
         res.status(200).json({message:"Permissão deletada"})
     } catch (error) {
-        res.status(404).json({error:error.message})
+        res.status(404).json({error: ErrorHandler.showError(error)})
     }
 }

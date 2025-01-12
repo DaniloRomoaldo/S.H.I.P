@@ -17,7 +17,6 @@ import * as viewsController from "./domain/postgres/views/controller.js"
 import * as viewsColumnsController from "./domain/postgres/viewColumns/controller.js"
 import * as rawQueryController from "./domain/postgres/raw/controller.js"
 import * as functionController from "./domain/postgres/functions/controller.js"
-import * as functionCodeController from "./domain/postgres/functionCode/controller.js"
 import * as procedureController from './domain/postgres/procedure/controller.js'
 import * as triggersController from './domain/postgres/trigger/controller.js'
 import * as enumsController from './domain/postgres/enums/controller.js'
@@ -86,7 +85,7 @@ app.post("/rawQuery",  authMiddleware ,rawQueryController.rawQuery);
 app.get("/functions", authMiddleware , functionController.getFunctions);
 
 // rota para coletar o código fonte de uma função específica
-app.get("/functionCode", authMiddleware , functionCodeController.getFunctionCode);
+app.get("/functionCode", authMiddleware , functionController.getFunctionCode);
 
 // rota para coletar as procedures de um schema
 app.get("/procedures", authMiddleware , procedureController.getProcedures);
