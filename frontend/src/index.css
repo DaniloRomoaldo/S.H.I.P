@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  background-color: #10131B;
+  font-family:'Inter';
+}
+
+.dt-layout-row:has(.dt-search),
+.dt-layout-row:has(.dt-length),
+.dt-layout-row:has(.dt-paging) {
+  display: none !important;
+}
