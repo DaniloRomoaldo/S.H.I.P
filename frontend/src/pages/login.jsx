@@ -16,6 +16,9 @@ export default function Login() {
 
     const {mutateAsync: autenticate} = useMutation({
         mutationFn: login,
+        onSuccess: () => {
+            window.location.href = "/home"; // O navigate causou problema com a maniulação do DOM pelo preline
+        },
         onError: (error) => {
             setErrorMessage(error.message);
         }

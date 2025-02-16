@@ -19,8 +19,8 @@ export default function Home() {
                 {/* Menu Superior */}
                 <div className="h-16 sm:h-[10%] flex items-center p-2 sm:p-0">
                     <HamburguerMenu />
-                    <div className="basis-2/3 bg-[rgba(10,160,20,0.7)] rounded-lg h-8 sm:h-[30%] w-[40%] ml-2 sm:ml-[5%] flex justify-center items-center">
-                        <p className="text-cyan-50 text-sm sm:text-base">ProstgreSQL</p>
+                    <div className="basis-2/3 bg-[rgba(10,160,20,0.7)] rounded-lg min-h-[1.5rem] sm:min-h-[1rem] w-[40%] ml-2 sm:ml-[5%] flex justify-center items-center">
+                        <p className="text-cyan-50 whitespace-nowrap overflow-hidden text-ellipsis text-[clamp(0.75rem,2vw,1rem)]">ProstgreSQL</p>
                     </div>
                 </div>
 

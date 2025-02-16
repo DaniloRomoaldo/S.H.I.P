@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { api } from "../lib/axios";
 import Cookies from "js-cookie"
 
@@ -16,3 +15,4 @@ export async function login({email, password}) {
         
     }
 }
+
